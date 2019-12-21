@@ -69,11 +69,14 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
+pip
+pyenv
+virtualenv
 sudo
 python
 zsh-autosuggestions
 zsh-syntax-highlighting
-pip)
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,7 +111,12 @@ alias ll="ls -alF"
 alias tree="tree -C -L 3 --dirsfirst"
 alias trea="tree -aC -L 3 --dirsfirst"
 
-# Zsh-autosuggestion accept
+# Python - Virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+export PROJECT_HOME=$HOME/Code
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+
+# Auto-suggest
 bindkey '^ ' autosuggest-execute
 
 # Pyenv
@@ -118,20 +126,17 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Code
-source /usr/local/bin/virtualenvwrapper.sh
-
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 
 # Tokens for Twitter
-export TOKEN="981955283676254208-6F57FCfFMfr4jd0KXqxFro0BVD9bhG2"
-export TOKEN_SECRET="L0MG3SpLoIDrwjamd8VFWfby2FUHNUz5HxpUlHo4HwPe7"
-export KEY="uz3nqgjIynKNxVRjOeOeOLT8Q"
-export KEY_SECRET="CH8foC7iFrFizimJa1J59HmdmRlk7kKzvf27OYqYx0xMD7iEGB"
+export TOKEN=""
+export TOKEN_SECRET=""
+export KEY=""
+export KEY_SECRET=""
 
-# Rust
+# Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+fpath+=~/.zfunc
+compinit
