@@ -7,8 +7,8 @@ export ZSH="/home/kyd/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -69,14 +69,11 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-pip
-pyenv
-virtualenv
-sudo
-python
-zsh-autosuggestions
-zsh-syntax-highlighting
-)
+         pip
+         python
+         sudo
+         zsh-autosuggestions
+         zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,11 +108,6 @@ alias ll="ls -alF"
 alias tree="tree -C -L 3 --dirsfirst"
 alias trea="tree -aC -L 3 --dirsfirst"
 
-# Python - Virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-export PROJECT_HOME=$HOME/Code
-source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-
 # Auto-suggest
 bindkey '^ ' autosuggest-execute
 
@@ -126,17 +118,38 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
-
-# Tokens for Twitter
-export TOKEN=""
-export TOKEN_SECRET=""
-export KEY=""
-export KEY_SECRET=""
+# Python - Virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+export PROJECT_HOME=$HOME/Code
+source /home/kyd/.pyenv/versions/3.8.1/bin/virtualenvwrapper.sh
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-fpath+=~/.zfunc
-compinit
+
+# JAVA
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
+
+# SPARK
+export SPARK_HOME=/usr/spark/spark-2.4.5-bin-hadoop2.7
+export PATH=$PATH:$SPARK_HOME/bin
+
+# NEO4J
+export NEO4J_HOME=/lib/neo4j
+
+# POSTGRESQL
+PATH=/usr/local/pgsql/bin:$PATH
+export PATH
+
+# Broot
+source /home/kyd/.config/broot/launcher/bash/br
+
+# NVM - Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# latexindent.pl
+export PATH=$PATH:/usr/local/bin/latexindent.pl
+
+eval "$(starship init zsh)"

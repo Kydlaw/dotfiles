@@ -2,9 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-export SHELL=`which zsh`
-[ -z "$ZSH_VERSION" ] && exec "$SHELL" -l
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
